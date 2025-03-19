@@ -4,20 +4,21 @@ import {
   HiOutlineBanknotes,
   HiOutlineChartBar,
 } from 'react-icons/hi2';
+
 import { formatCurrency } from 'utils/helpers';
 import Stat from './Stat';
 
 function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
-  // Stat 1)
+  // Stat 1) Number of Bookings
   const numBookings = bookings.length;
 
-  // Stat 2)
+  // Stat 2) Total Sales
   const sales = bookings.reduce((acc, cur) => acc + cur.totalPrice, 0);
 
-  // Stat 3)
+  // Stat 3) Total Check-ins
   const checkins = confirmedStays.length;
 
-  // Stat 4)
+  // Stat 4) Occupancy Rate
   // We will use a trick to calculate occupancy rate. It's not 100% accurate, but we want to keep it simple. We know we can have a total of 'numDays * cabinCount' days to occupy, and we also know how many days were actually booked. From this, we can compute the percentage
   const occupation =
     confirmedStays.reduce((acc, cur) => acc + cur.numNights, 0) /
